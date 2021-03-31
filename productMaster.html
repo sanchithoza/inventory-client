@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Inventory Management
+    </title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/datatable.css">
+    <link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="./css/custom.css">
+    <script type="text/javascript" src="./js/jquery-min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/datatable.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+
+    <script type="text/javascript" src="header.js"></script>
+    <script type="text/javascript" src="./js/lodash.min.js"></script>
+</head>
+
+<body>
+    <div class="row header">
+        <h4>Inventory Management System</h4>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <!--inside header.js-->
+    </div>
+    <div class="content">
+        <div class="row playground">
+            <div class="col-md-12">
+                <div class="row" style="padding: 8px; ">
+                    <div class="col-md-6">
+                        <h4>Product Master</h4>
+                    </div>
+                    <div class="col-md-6" style="text-align: right;">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productMasterModal">
+                            Add New Product
+                        </button>
+                        <!----------------------------->
+                        <!-- Add Product Modal Modal -->
+                        <!----------------------------->
+                        <div class="modal fade" id="productMasterModal" tabindex="-1" aria-labelledby="productMasterModalLabel" data-bs-backdrop="static" aria-hidden="true">
+
+                        </div>
+                        <!----------------------------->
+                        <!-- Add Product Modal Modal -->
+                        <!----------------------------->
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="padding: 10px; border: 1px solid black;">
+                        <table id="productRegister" class="display">
+                            <thead>
+                                <tr>
+                                    <th>edit/delete</th>
+                                    <th>Product Category</th>
+                                    <th>Product Sub Caregory</th>
+                                    <th>Product Discription</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function() {
+            $('#sidebar').html(sidebar);
+            $('#productMasterModal').html(addProductModal)
+            $.get("http://localhost:3000/products", function(data) {
+                populateProductTable(data);
+            });
+            //----------------------------
+            //add product modal events
+            //---------------------------
+
+            $('#addProduct').click(() => {
+                addNewProduct();
+            });
+            $("#productMasterModal").on('show.bs.modal', function() {
+                clearModal(this);
+                openProductMasterModal();
+            });
+            $("#productCategory").on('change', function() {
+                onChangeProductCategory();
+            });
+            $("#subCategory").on('change', function() {
+                onChangeSubCategory();
+            });
+        });
+
+
+        //$("#message").html("hello")
+    </script>
+</body>
+
+</html>
