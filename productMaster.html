@@ -80,7 +80,7 @@
         $(document).ready(function() {
             $('#sidebar').html(sidebar);
             $('#productMasterModal').html(addProductModal)
-            $.get("http://localhost:3000/products", function(data) {
+            $.get(`${url}/products`, function(data) {
                 populateProductTable(data);
             });
             //----------------------------

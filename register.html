@@ -94,7 +94,7 @@
 
             $('#transactionModal').html(addTransactionModal)
 
-            $.get("http://localhost:3000/transactions/" + type, function(data) {
+            $.get(`${url}/transactions/` + type, function(data) {
                 populateIoRegister(data);
             });
             //----------------------------
