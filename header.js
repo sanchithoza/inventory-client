@@ -70,7 +70,8 @@ let addTransactionModal = '<div class="modal-dialog modal-lg">' +
 //==================================
 //==Ui Elements like modal and menu==>
 //==================================
-let url = "http://localhost:3000"
+//let url = "http://localhost:3000"
+let url = "https://x7ghgnav1j.execute-api.us-east-1.amazonaws.com/dev"
 let companyList = [];
 let productList;
 $.get(`${url}/products`, async function(data) {
