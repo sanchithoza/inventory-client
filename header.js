@@ -70,10 +70,10 @@ let addTransactionModal = '<div class="modal-dialog modal-lg">' +
 //==================================
 //==Ui Elements like modal and menu==>
 //==================================
-
+let url = "http://localhost:3000"
 let companyList = [];
 let productList;
-$.get("http://localhost:3000/products", async function(data) {
+$.get(`${url}/products`, async function(data) {
     productList = await data
 });
 
@@ -106,7 +106,7 @@ function addNewProduct() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "http://localhost:3000/addProduct",
+        url: `${url}/addProduct`,
         data: JSON.stringify(newProduct),
         dataType: 'json',
         success: async function(data) {
@@ -132,7 +132,7 @@ function deleteProduct(id) {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "http://localhost:3000/deleteProduct",
+        url: `${url}/deleteProduct`,
         data: JSON.stringify(argu),
         dataType: 'json',
         success: async function(data) {
@@ -167,7 +167,7 @@ function onChangeProductCategory() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "http://localhost:3000/getProductWhere",
+        url: `${url}/getProductWhere`,
         data: JSON.stringify(filterData),
         dataType: 'json',
         success: function(data) {
@@ -199,7 +199,7 @@ function onChangeSubCategory() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "http://localhost:3000/getProductWhere",
+        url: `${url}/getProductWhere`,
         data: JSON.stringify(filterData),
         dataType: 'json',
         success: function(data) {
@@ -252,7 +252,7 @@ function addNewTransaction() {
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "http://localhost:3000/addTransaction",
+            url: `${url}/addTransaction`,
             data: JSON.stringify(newTransaction),
             dataType: 'json',
             success: async function(data) {
@@ -302,7 +302,7 @@ function onChangeProductCategoryTransaction() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "http://localhost:3000/getProductWhere",
+        url: `${url}/getProductWhere`,
         data: JSON.stringify(filterData),
         dataType: 'json',
         success: function(data) {
@@ -335,7 +335,7 @@ function onChangeSubCategoryTransation() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "http://localhost:3000/getProductWhere",
+        url: `${url}/getProductWhere`,
         data: JSON.stringify(filterData),
         dataType: 'json',
         success: function(data) {
@@ -368,7 +368,7 @@ function onChangeProductDiscriptionTransation() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "http://localhost:3000/getProductWhere",
+        url: `${url}/getProductWhere`,
         data: JSON.stringify(filterData),
         dataType: 'json',
         success: async function(data) {
@@ -395,7 +395,7 @@ function onChangeCompanyNameTransation() {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "http://localhost:3000/getProductWhere",
+        url: `${url}/getProductWhere`,
         data: JSON.stringify(filterData),
         dataType: 'json',
         success: function(data) {
@@ -425,13 +425,13 @@ function onChangeCompanyNameTransation() {
 
 
 function loadTables() {
-    $.get("http://localhost:3000/products", async function(data) {
+    $.get(`${url}/products`, async function(data) {
         await populateProductTable(data);
     });
-    $.get("http://localhost:3000/transactions", async function(data) {
+    $.get(`${url}/transactions`, async function(data) {
         await populateTransactionTable(data);
     });
-    $.get("http://localhost:3000/stockStatement", async function(data) {
+    $.get(`${url}/stockStatement`, async function(data) {
         await populateStockStatement(data);
     });
 }
@@ -509,7 +509,7 @@ function populateTransactionTable(data) {
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "http://localhost:3000/getProductById",
+            url: `${url}/getProductById`,
             data: JSON.stringify({ "id": element.product }),
             dataType: 'json',
             success: async function(result) {
@@ -602,7 +602,7 @@ function populateIoRegister(data) {
         $.ajax({
             type: "POST",
             contentType: "application/json",
-            url: "http://localhost:3000/getProductById",
+            url: `${url}/getProductById`,
             data: JSON.stringify({ "id": element.product }),
             dataType: 'json',
             success: async function(result) {
